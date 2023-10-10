@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="../static/css/style.css">
+{% endblock %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  {% if current_user.status == "Active" %}
+  <div class="box">
+    <h4>You've activated your account</h4>
+    <p>Your referral code is <b>{{ current_user.referral_code }}</b></p>
+  </div>
+  {% endif %}
+  {% if current_user.role == 2 and current_user.status != "Active" %}
+  <div class="verify">
+    {% if current_user.mpesa_code %}
+    <p>You've sent your activation request, your mpesa code will be verified and validated by the site's admin.</p>
+    {% else %}
+    <h4>Your account is not active. Verify it to activate it</h4>
+    <hr>
+    <form action="{{ url_for('verify_account') }}" method="post">
+      <input required type="text" name="ref-code" placeholder="Mpesa Code">
+      <button class="btn" type="submit">
+        <span class="button--text">Activate</span>
+      </button>
+    </form>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if current_user.role == 1 %}
+  <div class="verify">
+    <h4>Verify accounts</h4>
+    <hr>
+    {% if mpesa_codes %}
+    {% for code in mpesa_codes %}
+    <div class="codes">
+      <div class="codes-info">
+        {% for user in users if user.id == code.user %}
+        <p>{{ user.first_name }} {{ user.last_name }}</p>
+        {% endfor %}
+        <h4>{{ code.ref_code }}</h4>
+      </div>
+      <div class="actions">
+        <a class="link approve" href="{{ url_for('approve', mpesa_id=code.id) }}">Approve</a>
+        <a class="link decline" href="{{ url_for('decline', mpesa_id=code.id) }}">Decline</a>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="else">No codes to verify</p>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

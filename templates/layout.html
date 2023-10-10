@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/layout.css">
+  <link rel="shortcut icon" href="../static/images/favicon.png" type="image/x-icon">
+  <title>Venus Company | {% block title %}{% endblock %}</title>
+</head>
+{% endblock %}
+
+<body>
+  <header>
+    <a href="{{ url_for('home') }}">
+      <h4 id="logo">Venus Company</h4>
+    </a>
+    <div class="links-box">
+      {% if current_user.is_authenticated %}
+      <div class="account">
+        <div class="account-info">
+          <p>Welcome, <b>{{ current_user.first_name }} {{ current_user.last_name }}</b></p>
+          <img src="../static/images/man.png" alt="user-profile">
+        </div>
+        <div class="bookings">
+          <div class="booking">
+            <a href="{{ url_for('invited_users', referral_code=current_user.referral_code) }}">
+              <p>Invited Users</p>
+            </a>
+            <a href="{{ url_for('logout') }}">
+              <p id="logout">Logout</p>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="links">
+        <a id="link" href="{{ url_for('register') }}">Sign Up</a>
+        <a id="link" href="{{ url_for('login') }}">Sign In</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="burger">
+      <div class="div"></div>
+      <div class="div"></div>
+      <div class="div"></div>
+    </div>
+  </header>
+  <div class="side-account">
+    <p>Welcome, <b>{{ current_user.first_name }} {{ current_user.last_name }}</b></p>
+    <hr>
+    <div class="side-actions">
+      <div class="booking">
+        <a href="{{ url_for('invited_users', referral_code=current_user.referral_code) }}">
+          <p>Invited Users</p>
+        </a>
+        <a href="{{ url_for('logout') }}">
+          <p id="logout">Logout</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="tops">
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}}">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  {% block body %}
+  {% endblock %}
+
+  <script src="{{ url_for('static', filename='js/layout.js') }}"></script>
+</body>
+
+</html>

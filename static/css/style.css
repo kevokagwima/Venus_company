@@ -1,0 +1,130 @@
+.container {
+  padding: 2rem;
+}
+
+.verify,
+.box {
+  padding: 2rem;
+  border-radius: 0.3rem;
+  max-width: 40rem;
+  text-align: center;
+  margin-inline: auto;
+  background-color: var(--main-bgcolor);
+}
+
+.verify h4,
+.box h4 {
+  font-family: var(--header-font);
+  font-size: 3ch;
+}
+
+.verify p,
+.box p {
+  font-family: var(--paragraph-font);
+  font-size: 2.2ch;
+}
+
+.box p {
+  margin-top: 1rem;
+}
+
+.verify hr {
+  margin: 1rem auto;
+  max-width: 80%;
+  border: none;
+  outline: 1px solid grey;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+form input {
+  padding: 1em;
+  border: none;
+  outline: 1px solid grey;
+  border-radius: 0.3rem;
+  text-align: center;
+  font-size: 2.2ch;
+  text-transform: uppercase;
+}
+
+.btn {
+  grid-column: 1/2;
+  margin-bottom: 0;
+}
+
+.codes {
+  background-color: var(--highlight-bgcolor);
+  padding: 1rem;
+  border-radius: 0.3rem;
+}
+
+.codes-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--main-bgcolor);
+}
+
+.codes-info p {
+  font-size: 2ch;
+}
+
+.codes-info h4 {
+  font-family: var(--paragraph-font);
+  text-transform: uppercase;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.link {
+  font-family: var(--links-font);
+  padding: 0.5em;
+  border-radius: 0.3rem;
+  color: white;
+}
+
+.approve {
+  background-color: green;
+}
+
+.decline {
+  background-color: red;
+}
+
+.else {
+  color: red;
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 500px) {
+}
+
+@media screen and (max-width: 400px) {
+  .box h4 {
+    font-size: 2.8ch;
+  }
+
+  .verify h4 {
+    font-size: 2.5ch;
+  }
+
+  form {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  form * {
+    width: 100%;
+  }
+}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="../static/css/invited-users.css">
+{% endblock %}
+
+{% block title %}
+Invited Users
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>Invited Users ({{ users|count }})</h1>
+  <div class="box">
+    {% if users %}
+    {% for user in users %}
+    <div class="user">
+      <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+      <p>Account status: <b>{{ user.status }}</b></p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p class="else">No user has joined using your referral code</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

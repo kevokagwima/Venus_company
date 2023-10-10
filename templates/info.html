@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="../static/css/info.css">
+{% endblock %}
+
+{% block title %}
+Account-info
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1>Follow these steps to activate your account</h1>
+  <div class="box">
+    <ul>
+      <li>After creating your account, your account is put on hold pending payment confirmation.</li>
+      <li>A fixed amount of <b>Ksh 3,500</b> is to be paid to activate your account.</li>
+      <li>All payments to be made via paybill <b>458632</b>.</li>
+      <li>After payment, enter your MPESA code.</li>
+      <li>Your MPESA code will be verified by the site's admin.</li>
+      <li>Successfull approval of payment will activate the account.</li>
+    </ul>
+    <a href="{{ url_for('home') }}">
+      <button>Click here after payment</button>
+    </a>
+  </div>
+</div>
+{% endblock %}
