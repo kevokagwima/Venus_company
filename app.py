@@ -92,9 +92,17 @@ def home():
   mpesa_codes = MpesaCode.query.all()
   return render_template("index.html", roles=roles, mpesa_codes=mpesa_codes, users=users)
 
+@app.route("/investment")
+@login_required
+def investment():
+  return render_template("investment.html")
+
 @app.route("/invited_users/<int:referral_code>")
 @login_required
 def invited_users(referral_code):
+  if current_user.referral_code != referral_code:
+    flash("Invalid URL", category="danger")
+    return redirect(url_for('home'))
   users = Users.query.filter_by(joining_code=referral_code).all()
   return render_template("invited-users.html", users=users)
 

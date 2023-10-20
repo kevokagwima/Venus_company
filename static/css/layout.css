@@ -94,6 +94,22 @@ header {
   color: var(--main-bgcolor);
 }
 
+#investment {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--sec-bgcolor);
+  padding: 0.2rem 0.5rem;
+  border: none;
+  color: var(--highlight-bgcolor);
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+#investment img {
+  max-height: 1.5rem;
+}
+
 .links-box {
   display: flex;
   align-items: center;
@@ -173,6 +189,10 @@ header {
 
 .show-bookings {
   display: block;
+}
+
+.booking #investment {
+  margin: 1rem;
 }
 
 .booking p {
@@ -292,7 +312,7 @@ header {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   header {
     padding-inline: 1rem;
   }
@@ -301,7 +321,8 @@ header {
     display: grid;
   }
 
-  .account {
+  .account,
+  .menu-box a {
     display: none;
   }
 

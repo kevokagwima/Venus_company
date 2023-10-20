@@ -18,6 +18,14 @@
     <a href="{{ url_for('home') }}">
       <h4 id="logo">Venus Company</h4>
     </a>
+    <div class="menu-box">
+      <a href="{{ url_for('investment') }}">
+        <button id="investment">
+          <img src="{{ url_for('static', filename='images/earning.png') }}" alt="investment icon">
+          Investment
+        </button>
+      </a>
+    </div>
     <div class="links-box">
       {% if current_user.is_authenticated %}
       <div class="account">
@@ -55,6 +63,12 @@
     <div class="side-actions">
       <div class="booking">
         {% if current_user.is_authenticated %}
+        <a href="{{ url_for('investment') }}">
+          <button id="investment">
+            <img src="{{ url_for('static', filename='images/earning.png') }}" alt="investment icon">
+            Investment
+          </button>
+        </a>
         <a href="{{ url_for('invited_users', referral_code=current_user.referral_code) }}">
           <p>Invited Users</p>
         </a>
